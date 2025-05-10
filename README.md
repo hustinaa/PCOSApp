@@ -83,7 +83,7 @@ python manage.py runserver
 
 ## 👩‍💻 About the Developers
 
-Developed by Justine Evora, Christine Sotoza, Amina Javellana 
+Developed by Justine Evora, Christine Sotoza, Amina Javellana.  
 Currently studying **Management Information Systems** at **Ateneo de Manila University**.
 
 If you find this project helpful, feel free to give it a ⭐ and connect!
