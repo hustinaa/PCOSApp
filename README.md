@@ -78,3 +78,12 @@ python manage.py runserver
 - **Frontend**: HTML, CSS (Bootstrap or Tailwind)
 - **Database**: SQLite
 - **ML/Logic**: Custom rules or basic algorithms (KNN, Decision Trees, etc.)
+
+---
+
+## 👩‍💻 About the Developers
+
+Developed by Justine Evora, Christine Sotoza, Amina Javellana 
+Currently studying **Management Information Systems** at **Ateneo de Manila University**.
+
+If you find this project helpful, feel free to give it a ⭐ and connect!
