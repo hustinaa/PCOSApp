@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Last Generated Meal Plan{% endblock %}
+{% block content %}
+    <div class="meal-plan-shell">
+        <h2>Last Generated Meal Plan</h2>
+        {% if message %}
+            <p>{{ message }}</p>
+        {% else %}
+            <div class="meal-plan-container">
+                <div class="summary">
+                    <h3>BMI: {{ bmi|floatformat:2 }} ({{ bmi_description }})</h3>
+                    <h3>BMR: {{ bmr|floatformat:2 }}</h3>
+                    <h3>Protein Range: {{ protein_min|floatformat:2 }}g - {{ protein_max|floatformat:2 }}g</h3>
+                </div>
+                {% for day_plan in week_plan %}
+                    <div class="meal-plan-day">
+                        <h3>{{ day_plan.day }}</h3>
+                        <div class="meal-section">
+                            <strong>Breakfast:</strong>
+                            <ul>
+                                {% for recipe in day_plan.breakfast %}
+                                    <li>
+                                        <strong>{{ recipe.name }}</strong><br>
+                                        Protein Content: {{ recipe.protein }}g<br>
+                                        Ingredients: {{ recipe.ingredients }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="meal-section">
+                            <strong>Lunch:</strong>
+                            <ul>
+                                {% for recipe in day_plan.lunch %}
+                                    <li>
+                                        <strong>{{ recipe.name }}</strong><br>
+                                        Protein Content: {{ recipe.protein }}g<br>
+                                        Ingredients: {{ recipe.ingredients }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="meal-section">
+                            <strong>Dinner:</strong>
+                            <ul>
+                                {% for recipe in day_plan.dinner %}
+                                    <li>
+                                        <strong>{{ recipe.name }}</strong><br>
+                                        Protein Content: {{ recipe.protein }}g<br>
+                                        Ingredients: {{ recipe.ingredients }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

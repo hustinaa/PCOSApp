@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <!-- Greeting -->
+    <h1>Hello, {{ username }}!</h1>
+
+    <!-- Form -->
+    <div class="form-shell">
+        <form action="{% url 'recommend_meals' %}" method="post">
+            {% csrf_token %}
+            <h2 style="color: #33528a; text-align: left; margin-bottom: 30px;">Please enter your information</h2>
+
+            <!-- Weight and Height Section -->
+            <div style="display: flex; gap: 20px; margin-bottom: 20px;">
+                <div style="flex: 1;">
+                    <label for="weight">Weight (kg):</label>
+                    {{ form.weight }}
+                    {% if form.weight.errors %}
+                        <div style="color: red; font-size: 0.9em;">
+                            {% for error in form.weight.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                <div style="flex: 1;">
+                    <label for="height">Height (cm):</label>
+                    {{ form.height }}
+                    {% if form.height.errors %}
+                        <div style="color: red; font-size: 0.9em;">
+                            {% for error in form.height.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Age -->
+            <div style="margin-bottom: 20px;">
+                <label for="age">Age (years):</label>
+                {{ form.age }}
+            </div>
+
+            <!-- Activity Level -->
+            <div style="margin-bottom: 20px;">
+                <label for="activity_level">Activity Level:</label>
+                {{ form.activity_level }}
+            </div>
+
+            <!-- Dietary Restrictions -->
+            <div style="margin-bottom: 20px;">
+                <label for="restrictions">Dietary Restrictions:</label>
+                {{ form.restrictions }}
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" style="background-color: #33528a; color: white; padding: 12px 20px; border-radius: 8px;">Generate Meal Plan</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

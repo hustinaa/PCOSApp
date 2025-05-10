@@ -1,0 +1,195 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Meal Recommendation System{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fdd1d1;
+            color: #33528a;
+            height: 100vh;
+            display: flex;
+        }
+
+        .sidebar {
+            background-color: #ffc6c6;
+            width: 250px;
+            height: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sidebar img {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar h2 {
+            font-size: 18px;
+            margin: 0 0 30px 0;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-section img {
+            width: 50px; /* Adjust the size as needed */
+            margin-right: 10px;
+        }
+
+        .logo-section h2 {
+            font-size: 16px;
+            margin: 0;
+            color: #33528a;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #33528a;
+            text-decoration: none;
+            margin: 15px 0;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+
+        .form-shell {
+            background-color: #FFEBD4;
+            padding: 30px; /* Add internal spacing */
+            border-radius: 15px; /* Rounder corners */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            max-width: 600px; /* Limit width for better readability */
+            width: 100%; /* Responsive full width */
+        }
+
+        .content-container {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            min-height: 100vh; /* Full viewport height */
+            padding: 20px; /* Add padding for spacing on smaller screens */
+        }
+
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+
+        .content-wrapper h1 {
+            color: #33528a;
+            margin-bottom: 30px; 
+        }
+
+        button {
+            background-color: #33528a;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #274469;
+        }
+
+        .logout-section {
+            margin-top: auto; /* Ensure logout button stays at the bottom */
+        }
+        .meal-plan-shell {
+            background-color: #FFEBD4;  /* Light peach color */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            height: 70vh; /* Set a fixed height to allow scrolling */
+            overflow-y: auto; /* Allow vertical scrolling when content overflows */
+            margin-top: 20px;
+        }
+        .meal-plan-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-height: 100%;
+            overflow-y: auto; /* Ensure the container itself has scrolling */
+        }
+        .meal-plan-day {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        /* Settings Page Container */
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+}
+.delete-button {
+    background-color: #ff4d4d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+.delete-button:hover {
+    background-color: #e60000;
+}
+
+    </style>
+</head>
+<body>
+    {% if show_sidebar %}
+    <div class="sidebar">
+    <div>
+        <div class ="logo-section">
+            <img src="{% static 'images/logo.png' %}" alt="Logo">
+            <h2>MEAL RECOMMENDATION SYSTEM</h2>
+        </div>
+        <a href="{% url 'index' %}">Generate Meal Plan</a>
+        <a href="{% url 'saved_meal_plan' %}">Last Generated Meal Plan</a>
+        <a href="{% url 'settings' %}">Settings</a>
+
+    </div>
+    
+    <div class="logout-section">
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Log Out</button>
+        </form>
+    </div>
+</div>
+    {% endif %}
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
+
